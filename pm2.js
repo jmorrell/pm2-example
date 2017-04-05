@@ -1,9 +1,10 @@
 var pm2 = require('pm2');
 
 var instances = process.env.WEB_CONCURRENCY || -1;
-instances = 10;
 var maxMemory = process.env.WEB_MEMORY || 512;
 
+// Set instances to 10 to check that we're starting enough processes
+instances = 10;
 console.log(`Starting server with ${instances} instances.`);
 console.log(`You should see ${instances} random numbers logged.`);
 
@@ -21,8 +22,7 @@ pm2.connect((err) => {
     process.exit(2);
   }
 
-
-  pm2.start(options,(err) => {
+  pm2.start(options, (err) => {
     if (err) return console.error('Error while launching applications', err.stack || err);
     console.log('PM2 and application has been succesfully started');
 
