@@ -3,8 +3,6 @@ var pm2 = require('pm2');
 var instances = process.env.WEB_CONCURRENCY || -1;
 var maxMemory = process.env.WEB_MEMORY || 512;
 
-// Set instances to 10 to check that we're starting enough processes
-instances = 10;
 console.log(`Starting server with ${instances} instances.`);
 console.log(`You should see ${instances} random numbers logged.`);
 
