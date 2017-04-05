@@ -1,4 +1,4 @@
-console.log(Math.random());
+setTimeout(() => console.log(Math.random()), 500);
 
 var express = require('express');
 var app = express();
