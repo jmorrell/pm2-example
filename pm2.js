@@ -2,9 +2,9 @@ var pm2 = require('pm2');
 
 var instances = process.env.WEB_CONCURRENCY || -1;
 var maxMemory = process.env.WEB_MEMORY || 512;
-var cpuCount = require('os').cpus().length;
 
-console.log({ instances, cpuCount });
+console.log(`Starting server with ${instances} instances.`);
+console.log(`You should see ${instances} random numbers logged.`);
 
 pm2.connect(function() {
   var option = {
