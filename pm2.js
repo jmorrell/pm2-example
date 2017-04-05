@@ -1,21 +1,28 @@
 var pm2 = require('pm2');
 
 var instances = process.env.WEB_CONCURRENCY || -1;
+instances = 10;
 var maxMemory = process.env.WEB_MEMORY || 512;
 
 console.log(`Starting server with ${instances} instances.`);
 console.log(`You should see ${instances} random numbers logged.`);
 
-pm2.connect(function() {
-  var option = {
-    name: 'pm2-testing',
-    script: 'app.js',
-    exec_mode: 'cluster',
-    instances: instances,
-    max_memory_restart : `${maxMemory}M`,
-  };
+var options = {
+  name: 'pm2-testing',
+  script: 'app.js',
+  exec_mode: 'cluster',
+  instances: instances,
+  max_memory_restart : `${maxMemory}M`,
+};
 
-  pm2.start(option, function(err) {
+pm2.connect((err) => {
+  if (err) {
+    console.error(err);
+    process.exit(2);
+  }
+
+
+  pm2.start(options,(err) => {
     if (err) return console.error('Error while launching applications', err.stack || err);
     console.log('PM2 and application has been succesfully started');
 
