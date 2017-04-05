@@ -8,8 +8,8 @@ pm2.connect(function() {
     name: 'pm2-testing',
     script: 'app.js',
     exec_mode: 'cluster',
-    instances: env == 'local'? 1 : instances,
-    max_memory_restart : maxMemory + 'M',
+    instances: instances,
+    max_memory_restart : `${maxMemory}M`,
   };
 
   pm2.start(option, function(err) {
