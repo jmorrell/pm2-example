@@ -1,0 +1,5 @@
+{
+  "name": "PM2 Heroku Example App",
+  "description": "An example PM2 hello world app for testing clustering on Heroku",
+  "repository": "https://github.com/jmorrell/pm2-example"
+}
